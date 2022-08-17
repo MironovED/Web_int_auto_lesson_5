@@ -36,7 +36,10 @@ Given("user is on {string} page", async function (string) {
 
 When("user is booking one ticket", async function () {
   await clickElement(this.page, "nav > .page-nav__day:nth-child(7)");
-  await clickElement(this.page, ".movie:nth-child(3) > div:nth-of-type(4) a");
+  await clickElement(
+    this.page,
+    "section:nth-child(2) > div:nth-child(2) > ul > li"
+  );
   await clickElement(
     this.page,
     ".buying-scheme__wrapper > .buying-scheme__row:nth-child(10) > .buying-scheme__chair:nth-child(1)"
@@ -46,7 +49,10 @@ When("user is booking one ticket", async function () {
 
 When("user is booking two tickets", async function () {
   await clickElement(this.page, "nav > .page-nav__day:nth-child(7)");
-  await clickElement(this.page, ".movie:nth-child(3) > div:nth-of-type(4) a");
+  await clickElement(
+    this.page,
+    "section:nth-child(2) > div:nth-child(2) > ul > li"
+  );
   await clickElement(
     this.page,
     ".buying-scheme__wrapper > .buying-scheme__row:nth-child(9) > .buying-scheme__chair:nth-child(1)"
@@ -59,10 +65,14 @@ When("user is booking two tickets", async function () {
 });
 
 When("user is trying to book unavailable ticket", async function () {
-  await clickElement(this.page, ".movie:nth-child(3) > div:nth-of-type(4) a");
+  // await clickElement(this.page, "a.page-nav__day.page-nav__day_chosen");
   await clickElement(
     this.page,
-    ".buying-scheme__wrapper > .buying-scheme__row:nth-child(1) > .buying-scheme__chair:nth-child(2)"
+    "section:nth-child(2) > div:nth-child(2) > ul > li > a"
+  );
+  await clickElement(
+    this.page,
+    "div:nth-child(6) > span.buying-scheme__chair.buying-scheme__chair_standart.buying-scheme__chair_taken"
   );
 });
 

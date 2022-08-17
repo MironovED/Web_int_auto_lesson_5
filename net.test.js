@@ -14,7 +14,10 @@ afterEach(() => {
 describe("Testing of the ticket booking service", () => {
   test("Book one movie ticket", async () => {
     await clickElement(page, "nav > .page-nav__day:nth-child(7)");
-    await clickElement(page, ".movie:nth-child(3) > div:nth-of-type(4) a");
+    await clickElement(
+      page,
+      "section:nth-child(2) > div:nth-child(2) > ul > li"
+    );
     await clickElement(
       page,
       ".buying-scheme__wrapper > .buying-scheme__row:nth-child(10) > .buying-scheme__chair:nth-child(1)"
@@ -26,7 +29,10 @@ describe("Testing of the ticket booking service", () => {
 
   test("Book two movie tickets", async () => {
     await clickElement(page, "nav > .page-nav__day:nth-child(7)");
-    await clickElement(page, ".movie:nth-child(3) > div:nth-of-type(4) a");
+    await clickElement(
+      page,
+      "section:nth-child(2) > div:nth-child(2) > ul > li"
+    );
     await clickElement(
       page,
       ".buying-scheme__wrapper > .buying-scheme__row:nth-child(9) > .buying-scheme__chair:nth-child(1)"
@@ -44,10 +50,14 @@ describe("Testing of the ticket booking service", () => {
   });
 
   test("Should not book unavailable ticket", async () => {
-    await clickElement(page, ".movie:nth-child(3) > div:nth-of-type(4) a");
+    await clickElement(page, "a.page-nav__day.page-nav__day_chosen");
     await clickElement(
       page,
-      ".buying-scheme__wrapper > .buying-scheme__row:nth-child(1) > .buying-scheme__chair:nth-child(2)"
+      "section:nth-child(2) > div:nth-child(2) > ul > li > a"
+    );
+    await clickElement(
+      page,
+      "div:nth-child(6) > span.buying-scheme__chair.buying-scheme__chair_standart.buying-scheme__chair_taken"
     );
     let isButtonDisabled = await page.$eval(
       ".acceptin-button",
